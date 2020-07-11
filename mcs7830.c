@@ -53,7 +53,11 @@
 #include <asm/unaligned.h>
 #include <linux/usb.h>
 #include <asm/io.h>
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 2, 0)
 #include <asm/scatterlist.h>
+#else
+#include <linux/scatterlist.h>
+#endif
 #include <linux/mm.h>
 #include <linux/dma-mapping.h>
 #include <linux/kthread.h>
@@ -2361,7 +2365,9 @@ static int usbnet_start_xmit (struct sk_buff *skb, struct net_device *net)
             devdbg (dev, "tx: submit urb err %d", retval);
         break;
     case 0:
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 2, 0)
         net->trans_start = jiffies;
+#endif
         __skb_queue_tail (&dev->txq, skb);
         if (dev->txq.qlen >= TX_QLEN (dev)){
             
@@ -2558,7 +2564,9 @@ usbnet_probe (struct usb_interface *udev, const struct usb_device_id *prod)
     // set up our own records
     net = alloc_etherdev(sizeof(*dev));
     if (!net) {
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4, 2, 0)
         dbg ("can't kmalloc dev");
+#endif
         goto out;
     }
     
@@ -2601,13 +2609,17 @@ usbnet_probe (struct usb_interface *udev, const struct usb_device_id *prod)
     dev->bh.func = usbnet_bh;
     dev->bh.data = (unsigned long) dev;
 #if LINUX_VERSION_CODE >= KERNEL_VERSION(2,6,20)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,2,0)
     INIT_WORK (&dev->kevent, kevent);
+#endif
 #else
     INIT_WORK (&dev->kevent, kevent, dev);
 #endif
+#if LINUX_VERSION_CODE < KERNEL_VERSION(4,2,0)
     dev->delay.function = usbnet_bh;
     dev->delay.data = (unsigned long) dev;
     init_timer (&dev->delay);
+#endif
     
 #if LINUX_VERSION_CODE < KERNEL_VERSION(2,6,24)
     SET_MODULE_OWNER(net);

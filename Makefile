@@ -4,20 +4,19 @@ KDIR    := /lib/modules/$(shell uname -r)/build
 PWD    := $(shell pwd)
 
 default:
-	$(MAKE) -C $(KDIR) SUBDIRS=$(PWD) modules;
+	$(MAKE) WITHOUT_PHY=1 -C $(KDIR) M=$(shell pwd) SUBDIRS=$(PWD) modules;
 load:
 	modprobe mii
-	insmod mcs7830.ko
+	WITHOUT_PHY=1 insmod mcs7830.ko
 unload:
 	rmmod mcs7830                                                                                                                             
 install:
-	sh mosinstall
+	cp mcs7830.ko /lib/modules/$(shell uname -r)/kernel/drivers/net/usb
 
 uninstall:
-	sh mosuninstall
+	rm /lib/modules/$(shell uname -r)/kernel/drivers/net/usb/mcs7830.ko
 
 clean:
-	rm -rf .tmp_versions Module.symvers *.mod.c *.o *.ko .*.cmd
-	rm -rf modules.order
+	rm -rf .tmp_versions Module.symvers *.mod.c *.mod *.o *.ko .*.cmd *.order
 	
 
