@@ -1,0 +1,28 @@
+clear
+echo " "
+echo "-----------------------MCS7830 INSTALL SCRIPT------------------------"
+#echo "---------------------FOR LINUX 2.6.11-1.1369_FC4----------------------"
+echo " "
+if(ls mcs7830.ko >>/dev/null) then
+if(grep "modprobe mii" /etc/rc.local >>/dev/null) then
+ echo "mii already Installed !!!"
+else
+ echo "modprobe mii" >> /etc/rc.local
+ modprobe usbserial >> /dev/null
+ echo "mii installed"
+fi
+
+
+if(grep "insmod /lib/modules/`uname -r`/kernel/drivers/usb/serial/moschip/mcs7830.ko" /etc/rc.local >>/dev/null) then
+ echo "mcs7830 Driver already Installed"
+else
+ mkdir /lib/modules/`uname -r`/kernel/drivers/usb/serial/moschip 2>/dev/null
+ cp -f mcs7830.ko /lib/modules/`uname -r`/kernel/drivers/usb/serial/moschip >> /dev/null
+ echo "insmod /lib/modules/`uname -r`/kernel/drivers/usb/serial/moschip/mcs7830.ko" >> /etc/rc.local 
+ insmod /lib/modules/`uname -r`/kernel/drivers/usb/serial/moschip/mcs7830.ko >> /etc/rc.local
+ echo "driver installed"
+fi
+fi
+echo " "
+echo "-----------------------Thanks for using MCS7730 Driver-------------------"
+echo " "

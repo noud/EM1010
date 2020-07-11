@@ -1,0 +1,19 @@
+	
+
+This code is tested with  following Linux Kernels 
+
+	1) FC2 kernel version 2.6.5-1.358
+	2) FC3 kernel version 2.6.9-1.667
+	3) FC4 kernel version 2.6.11-1.1369
+	4) FC5 kernel version 2.6.15-1.2054_FC5
+	5) FC6 kernel version 2.6.18-1
+	6) FC7 Kernel version 2.6.21-1.3194.FC7
+	6) kernel versions 2.6.16.1, 2.6.17.7 on FC5
+	7) Added FC7 support
+Other distributions support:
+ 
+      	1) Mandriva 2007
+	2) Ubuntu 6.10
+	3) SUSE 9.3
+
+
