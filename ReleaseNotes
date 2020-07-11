@@ -1,19 +1,55 @@
+Version 1.11 Date:24th june 2011
+================================
+1)Changes from the previous release V1.10:
+
+	Added the function update_linkStat_thread to update the status link every 2 sec.
+
+	Fixed the BugId 5886 : MCS7830 fails to release the IP address even after Ethernet cable is unplugged.	
+
+This code is tested with  following Linux Kernels
 	
+	FC14 kernel version 2.6.38
+	FC14 kernel version 2.6.35
+
+
+
+
+CompleteSource Version 1.10: 2nd May 2011
+=========================================
+1) Base version is Version 1.10
+2) Copied applications sources (mosinst.c & mosuninst.c) to a folder "applications".
+3) Added folder "bin" where all the binaries will be copied upon building.
+4) Note that Makefile of drivers and applications are different from the cvs 
+   to copy to the "bin" folder.
+5) Added "readme.txt" file.
+
+Version 1.10 Date: 2nd May 2011
+================================
+1) Driver compatibility given upto kernel version 2.6.38.
+2) Changes from the previous release V1.9:
+   - Modified net interface name from usbX to ethX.
+   - mcs7830.c file is modified to provide compatibility till kernel version 2.6.38.
+   - Modified code in SetVendorCommandPassive() & GetVendorCommandPassive()
+	- To resolve the kernel crash that is due to accessing null pointer 
+	  in usb_control_msg().
+	- Allocated memory dynamically, and passed to usb_control_msg() in the above
+	  functions.
+   - Modified Makefile: Added command to remove modules.order file under "clean" target.
+   - Removed compilation warnings.
+
+Version 1.9 Date: 13th June 2010	
+================================
+1) Added MCS7832 device support. 
+   (i.e. This driver loads for both PID:7830 and PID:7832)
+
 
 This code is tested with  following Linux Kernels 
 
-	1) FC2 kernel version 2.6.5-1.358
-	2) FC3 kernel version 2.6.9-1.667
-	3) FC4 kernel version 2.6.11-1.1369
-	4) FC5 kernel version 2.6.15-1.2054_FC5
-	5) FC6 kernel version 2.6.18-1
-	6) FC7 Kernel version 2.6.21-1.3194.FC7
-	6) kernel versions 2.6.16.1, 2.6.17.7 on FC5
-	7) Added FC7 support
-Other distributions support:
- 
-      	1) Mandriva 2007
-	2) Ubuntu 6.10
-	3) SUSE 10.3
+	1) Kernel version 2.6.21
+
+NOTE:
+=====
+- Driver releases from versions V1.5 to V1.8 are copied at below path:
+smb://192.168.200.231/drivers/Linux_drivers/sourcecode/mcs7830/consolidated_source
 
 

@@ -11,16 +11,16 @@
 		2) make uninstall
 	
 	To configure the device
-		1) ifconfig usbx xxx.xxx.xxx.xxx 
+		1) ifconfig ethx xxx.xxx.xxx.xxx 
 
-	To know the speed & mode of the usbx device
-		1) mii-tool usbx
+	To know the speed & mode of the ethx device
+		1) mii-tool ethx
 		
-	To change the speed and mode of the usbx device
+	To change the speed and mode of the ethx device
 		1) EX:- mii-tool usbx -F 100baseTx-HD (this will switch into 100 half duplex mode)
 
 	To switch into Autoconfiguration mode(ie,100 Full) from any mode
-		1) mii-tool usbx -r
+		1) mii-tool ethx -r
 
 
 	This mcs7830 Linux driver source has support for 
@@ -36,7 +36,6 @@ NOTE:
 		make WITHOUT_PHY = 1 for WITHOUT PHY mode
 		make WITHOUT_PHY = 0 for ANY PHY (INTERNAL/EXTERNAL) mode.
 		
-
 
 
 

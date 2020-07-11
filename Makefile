@@ -18,6 +18,6 @@ uninstall:
 
 clean:
 	rm -rf .tmp_versions Module.symvers *.mod.c *.o *.ko .*.cmd
-
+	rm -rf modules.order
 	
 
